@@ -53,15 +53,15 @@ buttons[1].addEventListener('click', (e) => {
 	console.log(buttons[1].attributes[0].nodeValue);
 });
 
+var videoPlayer = document.querySelector('#video');
+var player = document.querySelector('.player__controls');
 
-
-
-
-
-
-
-
-
-
-
-//video.play();
+videoPlayer.addEventListener('dblclick', e => {
+	if(video.requestFullScreen){
+		video.requestFullScreen();
+	} else if(video.webkitRequestFullScreen){
+		video.webkitRequestFullScreen();
+	} else if(video.mozRequestFullScreen){
+		video.mozRequestFullScreen();;
+	}
+});
