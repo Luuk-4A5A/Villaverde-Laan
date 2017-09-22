@@ -10,7 +10,7 @@ class StandardModel {
 		print_r($file);
 		if(array_values($file)[0]['type'] == 'image/png' || array_values($file)[0]['type'] == 'image/jpeg') {
 			$moveFile = $this->moveFile($file);
-			if($moveFile != false) {
+			if($moveFileS) {
 				return '<br><img src="/view/css/images/' . array_values($file)[0]['name'] . '"><br>';
 			} else {
 				return 'something went wrong.';

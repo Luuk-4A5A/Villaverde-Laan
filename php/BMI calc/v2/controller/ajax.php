@@ -24,6 +24,8 @@ class Ajax {
 		}
 	}
 
+// HEB IK VAN HET INTERNET GEPAKT VOOR GEMAKKELIJKHEID
+
 	public function gen_uuid() {
 	    return sprintf( '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
 	        // 32 bits for "time_low"
