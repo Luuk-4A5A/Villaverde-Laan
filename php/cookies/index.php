@@ -26,7 +26,7 @@ class Router {
   public function sendToDestination($classname, $method, $params) {
     	require_once('controller/' . $classname . '.php');
      	$obj = new $classname;
-      call_user_method($method, $obj, $params);
+      call_user_func_array([$obj, $method], $params);
     }
 }
 
