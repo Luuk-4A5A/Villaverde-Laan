@@ -1,0 +1,58 @@
+section[class="user"] {
+	display:flex;
+	flex:1;
+	flex-direction: column;
+}
+
+section[class="user"] > div {
+	width:100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+section[class="user"] > div:first-of-type > p {
+	text-align:left;
+	flex:1;
+}
+
+section[class="user"] > div:not(:first-of-type) > p {
+	text-align:left;
+	flex:1;
+	border:solid 1px #fff;
+	padding:5px;
+}
+
+
+.user_header {
+	display:flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.user_header > a {
+	display:block;
+	margin-right:5px;
+	color:#fff;
+	font-size:18px;
+}
+
+/*Tablet*/
+
+@media only screen and (min-width: 768px) {
+	section[class="user"] > div > div {
+		display:flex;
+
+	}
+
+	section[class="user"] > div > div > p {
+		border:solid 1px #fff;
+		flex:1;
+	}
+
+}
+
+/*Desktop*/
+
+@media only screen and (min-width: 1200px) {
+
+}
