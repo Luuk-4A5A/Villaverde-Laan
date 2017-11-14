@@ -13,8 +13,8 @@ class Router {
   public function determineDestination($packets = '') {
   	$parameters = [];
 
-    $class = (!isset($packets[0]) || $packets[0] == '') ? 'index' : $packets[0];
-    $method = (!isset($packets[1]) || $packets[1] == '') ? 'index' : $packets[1];
+    $class = (!isset($packets[0]) || $packets[0] == '') ? 'standard' : $packets[0];
+    $method = (!isset($packets[1]) || $packets[1] == '') ? 'standard' : $packets[1];
 
   	for($i = 2; $i < count($packets); $i++) {
 		  array_push($parameters, $packets[$i]);
@@ -24,20 +24,9 @@ class Router {
   }
 
   public function sendToDestination($classname, $method, $params) {
-      if(file_exists('controller/' . $classname . '.php')) {
-        require_once('controller/' . $classname . '.php');
-       	$obj = new $classname;
-      } else {
-        require_once('view/pages/error/404.php');
-        return false;
-      }
-
-      if(method_exists($obj, $method)) {
-        call_user_func_array([$obj, $method], $params);
-        return true;
-      } else {
-        require_once('view/pages/error/404.php');
-      }
+    	require_once('controller/' . $classname . '.php');
+     	$obj = new $classname;
+      call_user_func_array([$obj, $method], $params);
     }
 }
 
