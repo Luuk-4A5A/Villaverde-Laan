@@ -1,39 +1,3 @@
-function addEvent(element, event, callback) {
-	element['on' + event] = callback;
-}
-
-function ajax_get(url, callback) {
-	var ajax = new XMLHttpRequest();
-	ajax.open("GET", url, true);
-
-	ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-	ajax.onreadystatechange = function() {
-		if(ajax.readyState == 4 && ajax.status == 200) {
-			callback(ajax.responseText);
-		}
-	}
-	ajax.send();
-}
-
-function ajax_post(url, data, callback) {
-	var ajax = new XMLHttpRequest();
-	ajax.open("POST", url, true);
-
-	ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-	ajax.onreadystatechange = function() {
-		if(ajax.readyState == 4 && ajax.status == 200) {
-			callback(ajax.responseText);
-		}
-	}
-	ajax.send(data);
-}
-
-
-
-
-
 function domInit(selector) {
   this.selector = selector;
   this.elements = document.querySelectorAll(selector);
@@ -67,37 +31,49 @@ function domInit(selector) {
 }
 
 function ajax(options) {
-	let httpTypes = ["GET", "POST"]
-	this.type = (Boolean(options.type) && httpTypes.indexOf(options.type) !== -1) ? options.type : 'GET';
-	this.url = (Boolean(options.url)) ? options.url : '/';
+	let httpTypes = ["GET", "POST"];
+	let ajaxObj = {};
+	ajaxObj.type = (Boolean(options.type) && httpTypes.indexOf(options.type) !== -1) ? options.type : 'GET';
+	ajaxObj.url = (Boolean(options.url)) ? options.url : '/';
 
-	this.processData = (Boolean(options.processData)) ? options.processData : true;
-	this.data = (Boolean(options.data)) ? options.data : {};
+	ajaxObj.processData = (Boolean(options.processData)) ? options.processData : true;
+	ajaxObj.data = (Boolean(options.data)) ? options.data : {};
+	ajaxObj.success = (Boolean(options.success)) ? options.success : function(responseText){console.log(responseText)};
 
+	ajaxObj.serialize = function(obj) {
+		let objArr = Object.entries(obj);
+		var string = ''
+		objArr.forEach(function(value, index, array) {
+			string += value[0] + '=' + value[1] + '&';
+		});
 
+		string = string.slice(1, -1);
+		return string;
+	}
+
+	if(ajaxObj.processData == true) {
+		ajaxObj.httpString = ajaxObj.serialize(ajaxObj.data);
+	}
+
+	if(ajaxObj.type === 'GET') {
+		ajaxObj.url = ajaxObj.url += '?' + ajaxObj.httpString;
+	}
 
 	let ajax = new XMLHttpRequest();
-	ajax.open(this.type, this.url, true);
+	ajax.open(ajaxObj.type, ajaxObj.url, true);
+	ajax.onreadystatechange = function() {
+		if(ajax.readyState == 4 && ajax.status == 200) {
+			ajaxObj.success(ajax.responseText);
+		}
+	}
 
+	ajax.send(ajaxObj.httpString);
 
 }
-
-
-ajax({
-	type : "GET"
-});
 
 function dom(selector) {
   return new domInit(selector);
 }
-
-
-
-
-
-
-
-
 
 
 
