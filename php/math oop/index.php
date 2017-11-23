@@ -35,13 +35,6 @@ abstract Class Math {
 
 }
 
-// $math = new Math([]);
-/*
-return $this->doCalc($this->numbers, function($number, $arrayNumber) {
-  $number = $number + $arrayNumber;
-})
-*/
-
 Class Sum extends Math {
   protected function calc($number, $arrayNumber) {
     return $number + $arrayNumber;
