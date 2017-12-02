@@ -2,66 +2,66 @@
 
 <?php
 
-interface iPerson {
-  public function Talk();
-}
-
-class Person implements iPerson {
-  public $name;
-  private $age;
-
-  public function __construct($name, $age) {
-    $this->name = $name;
-    $this->age = $age;
-  }
-
-  public function Talk($text = 'that I like you.') {
-    return 'he/she is saying ' . $text . ', greetings from ' . $this->name . '<br>';
-  }
-
-  public function getAge() {
-    return $this->age;
-  }
-
-  public function setAge($age) {
-    if($age < 0 || $age > 150) {
-      return false;
-    }
-
-    $this->age = $age;
-    return true;
-  }
-
-}
-
-class Woman extends Person {
-  public function Talk($text = 'that I like you.') {
-    return 'She is saying ' . $text . ', greetings from ' . $this->name . '<br>';
-  }
-}
-
-class Man extends Person {
-  public function Talk($text = 'that I like you.') {
-    return 'He is saying ' . $text . ', greetings from ' . $this->name . '<br>';
-  }
-}
-
-
-$person = new Person('randomperson', 123);
-echo $person->Talk('wefwefwefwef');
-
-$person->setAge(151);
-echo $person->getAge();
-echo '<br>';
-
-$tim = new Man('Tim', 21);
-echo $tim->Talk('that you should say something');
-
-$tim->setAge();
-echo '<br>';
-
-$sharren = new Woman('Sharren', 29);
-echo $sharren->Talk('that you should say something');
+// interface iPerson {
+//   public function Talk();
+// }
+//
+// class Person implements iPerson {
+//   public $name;
+//   private $age;
+//
+//   public function __construct($name, $age) {
+//     $this->name = $name;
+//     $this->age = $age;
+//   }
+//
+//   public function Talk($text = 'that I like you.') {
+//     return 'he/she is saying ' . $text . ', greetings from ' . $this->name . '<br>';
+//   }
+//
+//   public function getAge() {
+//     return $this->age;
+//   }
+//
+//   public function setAge($age) {
+//     if($age < 0 || $age > 150) {
+//       return false;
+//     }
+//
+//     $this->age = $age;
+//     return true;
+//   }
+//
+// }
+//
+// class Woman extends Person {
+//   public function Talk($text = 'that I like you.') {
+//     return 'She is saying ' . $text . ', greetings from ' . $this->name . '<br>';
+//   }
+// }
+//
+// class Man extends Person {
+//   public function Talk($text = 'that I like you.') {
+//     return 'He is saying ' . $text . ', greetings from ' . $this->name . '<br>';
+//   }
+// }
+//
+//
+// $person = new Person('randomperson', 123);
+// echo $person->Talk('wefwefwefwef');
+//
+// $person->setAge(151);
+// echo $person->getAge();
+// echo '<br>';
+//
+// $tim = new Man('Tim', 21);
+// echo $tim->Talk('that you should say something');
+//
+// $tim->setAge();
+// echo '<br>';
+//
+// $sharren = new Woman('Sharren', 29);
+// echo $sharren->Talk('that you should say something');
 
 ?>
 
